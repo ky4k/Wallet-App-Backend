@@ -13,5 +13,7 @@ namespace DAL.Repositories
         Task<Transaction> GetTransactionByIdAsync(Guid transactionId);
         Task<User> GetUserWithBalanceAsync(Guid userId);
         Task UpdateUserAsync(User user);
+        string GetIconForTransactionType(string type);
+
     }
 }

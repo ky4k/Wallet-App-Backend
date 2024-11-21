@@ -42,5 +42,31 @@ namespace Wallet_App_Backend.Controllers
                 return NotFound(ex.Message);
             }
         }
+        [HttpGet("daily-points/{userId}")]
+        public async Task<ActionResult<string>> GetDailyPointsAsync(Guid userId)
+        {
+            try
+            {
+                var points = await _walletService.CalculateDailyPointsAsync(userId, DateTime.Now);
+                return Ok(points); 
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+        [HttpGet("transaction-icon/{type}")]
+        public ActionResult<string> GetTransactionIcon(string type)
+        {
+            try
+            {
+                var icon = _walletService.GetTransactionIcon(type); 
+                return Ok(icon);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error fetching icon for type {type}: {ex.Message}");
+            }
+        }
     }
 }

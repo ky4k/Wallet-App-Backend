@@ -19,5 +19,6 @@ namespace BLL.DTOs
         public string AuthorizedUser { get; set; } = string.Empty;
         public string FormattedDate { get; set; } = string.Empty;
         public string DisplayDescription => IsPending ? $"Pending: {Description}" : Description;
+        public string IconUrl { get; set; } = string.Empty;
     }
 }

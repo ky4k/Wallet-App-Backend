@@ -8,8 +8,9 @@ namespace BLL.Profiles
     {
         public WalletProfile()
         {
-            CreateMap<User, UserDto>(); 
-            CreateMap<Transaction, TransactionDto>(); 
+            CreateMap<User, UserDto>();
+            CreateMap<Transaction, TransactionDto>()
+                .ForMember(dest => dest.IconUrl, opt => opt.MapFrom(src => $"/icons/{src.IconPath}"));
         }
     }
 }

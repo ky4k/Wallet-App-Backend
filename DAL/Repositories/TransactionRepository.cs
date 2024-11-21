@@ -41,5 +41,14 @@ namespace DAL.Repositories
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
+        public string GetIconForTransactionType(string type)
+        {
+            return type switch
+            {
+                "Payment" => "payment-icon.png",
+                "Credit" => "credit-icon.png",
+                _ => "default-icon.png"
+            };
+        }
     }
 }

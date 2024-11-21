@@ -14,5 +14,6 @@ namespace BLL.Interfaces
         Task<IEnumerable<TransactionDto>> GetLatestTransactionsAsync(Guid userId, int count);
         Task<TransactionDto> GetTransactionDetailsAsync(Guid transactionId);
         Task<string> CalculateDailyPointsAsync(Guid userId, DateTime date);
+        string GetTransactionIcon(string type);
     }
 }

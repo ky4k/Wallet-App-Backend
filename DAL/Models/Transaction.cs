@@ -18,5 +18,6 @@ namespace DAL.Models
         public DateTime Date { get; set; }
         public bool IsPending { get; set; }
         public string AuthorizedUser { get; set; } = string.Empty;
+        public string IconPath { get; set; } = string.Empty;
     }
 }
