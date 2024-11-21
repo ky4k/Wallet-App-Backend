@@ -22,39 +22,59 @@ namespace BLL.Services
             _transactionRepository = transactionRepository;
             _mapper = mapper;
         }
-
         public async Task<string> CalculateDailyPointsAsync(Guid userId, DateTime date)
         {
             var user = await _transactionRepository.GetUserWithBalanceAsync(userId);
             if (user == null)
                 throw new KeyNotFoundException("User not found.");
 
+            // Check if points have already been calculated for today
             if (user.LastPointsDate.Date == date.Date)
             {
-                return FormatPoints(user.Points);
+                return FormatPoints(user.Points); // Return existing points if calculated today
             }
 
+            // Calculate day of season
             int dayOfSeason = (date - GetSeasonStartDate(date)).Days + 1;
 
-            int points = 2; 
-            if (dayOfSeason > 1) points += 1; 
-
-            int previousDayPoints = 3;
-            int twoDaysAgoPoints = 2;
-
-            for (int i = 3; i <= dayOfSeason; i++)
+            // Initialize points based on the day of the season
+            int points = 0;
+            if (dayOfSeason == 1)
             {
-                points = (int)Math.Round(twoDaysAgoPoints * 1.0 + previousDayPoints * 0.6);
-                twoDaysAgoPoints = previousDayPoints;
-                previousDayPoints = points;
+                points = 2; // First day of season gets 2 points
+            }
+            else if (dayOfSeason == 2)
+            {
+                points = 3; // Second day of season gets 3 points
+            }
+            else if (dayOfSeason > 2)
+            {
+                int previousDayPoints = 3;
+                int twoDaysAgoPoints = 2;
+
+                // For subsequent days, calculate points based on previous values
+                for (int i = 3; i <= dayOfSeason; i++)
+                {
+                    points = (int)Math.Round(twoDaysAgoPoints * 1.0 + previousDayPoints * 0.6);
+                    twoDaysAgoPoints = previousDayPoints;
+                    previousDayPoints = points;
+                }
             }
 
+            // Ensure points are valid (no negative points)
+            if (points < 0)
+            {
+                points = 0; // Prevent negative points
+            }
+
+            // Update the user's points and last points date
             user.LastPointsDate = date;
             user.Points = points;
 
+            // Save the changes to the database
             await _transactionRepository.UpdateUserAsync(user);
 
-            return FormatPoints(points); 
+            return FormatPoints(points); // Return formatted points
         }
 
         private string FormatPoints(int points)
@@ -66,13 +86,13 @@ namespace BLL.Services
         {
             int year = date.Year;
             if (date.Month >= 3 && date.Month <= 5)
-                return new DateTime(year, 3, 1); //Sprting
+                return new DateTime(year, 3, 1); // Spring
             else if (date.Month >= 6 && date.Month <= 8)
-                return new DateTime(year, 6, 1); //Summer
+                return new DateTime(year, 6, 1); // Summer
             else if (date.Month >= 9 && date.Month <= 11)
-                return new DateTime(year, 9, 1); //Autumn
+                return new DateTime(year, 9, 1); // Autumn
             else
-                return new DateTime(year, 12, 1); //Summer
+                return new DateTime(year, 12, 1); // Winter
         }
 
         public async Task<IEnumerable<TransactionDto>> GetLatestTransactionsAsync(Guid userId, int count = 10)

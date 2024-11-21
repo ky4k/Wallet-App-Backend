@@ -21,6 +21,8 @@ builder.Services.AddAutoMapper(typeof(WalletProfile).Assembly);
 builder.Services.AddScoped<IWallet, WalletService>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
+builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +31,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseStaticFiles();
 
 app.UseAuthorization();
 
