@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35506.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet App Backend", "Wallet App Backend\Wallet App Backend.csproj", "{5464E867-4CF4-42AB-98D8-725449E996E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{325BC155-0687-4053-876C-6972362FF1B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{DD4D3FFE-EB48-44CD-B205-A242CB564D37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5464E867-4CF4-42AB-98D8-725449E996E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5464E867-4CF4-42AB-98D8-725449E996E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5464E867-4CF4-42AB-98D8-725449E996E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5464E867-4CF4-42AB-98D8-725449E996E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{325BC155-0687-4053-876C-6972362FF1B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{325BC155-0687-4053-876C-6972362FF1B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{325BC155-0687-4053-876C-6972362FF1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{325BC155-0687-4053-876C-6972362FF1B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD4D3FFE-EB48-44CD-B205-A242CB564D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD4D3FFE-EB48-44CD-B205-A242CB564D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD4D3FFE-EB48-44CD-B205-A242CB564D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD4D3FFE-EB48-44CD-B205-A242CB564D37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
