@@ -32,6 +32,8 @@ namespace DAL
                 .HasMany(u => u.Transactions)
                 .WithOne(t => t.User)
                 .HasForeignKey(t => t.UserId);
+
+            modelBuilder.Entity<User>().Property(u => u.LastPointsDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
         }
     }
 }

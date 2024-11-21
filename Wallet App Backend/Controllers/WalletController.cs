@@ -47,12 +47,12 @@ namespace Wallet_App_Backend.Controllers
         {
             try
             {
-                var points = await _walletService.CalculateDailyPointsAsync(userId, DateTime.Now);
+                var points = await _walletService.CalculateDailyPointsAsync(userId, DateTime.UtcNow);
                 return Ok(points); 
             }
             catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new { Message = ex.Message, InnerException = ex.InnerException?.Message });
             }
         }
         [HttpGet("transaction-icon/{type}")]

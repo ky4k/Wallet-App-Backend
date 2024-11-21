@@ -28,6 +28,8 @@ namespace BLL.Services
             if (user == null)
                 throw new KeyNotFoundException("User not found.");
 
+            date = date.ToUniversalTime();
+
             // Check if points have already been calculated for today
             if (user.LastPointsDate.Date == date.Date)
             {
